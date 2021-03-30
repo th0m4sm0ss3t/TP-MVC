@@ -7,13 +7,14 @@ require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../app/Controllers/MainController.php';
 require __DIR__.'/../app/Controllers/StoryController.php';
 
-// On veut inclure la bonne page selon le paramètre "page"
-// reçu en paramètre GET
-
 // Instanciation de notre object $router
 $router = new AltoRouter();
 // On définit le chemin vers dossier public
-$router->setBasePath('/Revisions/PHP/TP-MVC/public');
+// $router->setBasePath('/Revisions/PHP/TP-MVC/public');
+// dump($_SERVER['BASE_URI']);
+// $_SERVER['BASE_URI'] -> dynamise le chemin url depuis localhost jusqu'au dossier public transmit à PHP
+$router->setBasePath($_SERVER['BASE_URI']);
+
 
 /* HOME */
 $router->map(
@@ -52,7 +53,7 @@ $router->map(
 // Renvoi soit false, soit infos demandées
 $match = $router->match();
 
-dump($match);
+// dump($match);
 
 if ($match !== false) {
     // dump($match['target']);

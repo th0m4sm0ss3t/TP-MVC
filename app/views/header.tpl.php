@@ -11,10 +11,11 @@
        
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="<?php echo $base_uri; ?>/assets/css/styles.css">
     </head>
 
     <body>
         <h1 class="title-header">Système d'inscription et de connection</h1>
 
     <?php include "navbar.php"; ?>
+

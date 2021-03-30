@@ -10,7 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="collapse navbar-collapse justify-content-center" id="navbarLinks">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php">Accueil</a>
+                        <a class="nav-link text-white" href="<?php echo $base_uri; ?>/">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="login.php">Me connecter</a>
@@ -19,7 +19,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <a class="nav-link text-white" href="signup.php">M'inscrire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/list">Liste des histoires du site</a>
+                        <a class="nav-link text-white" href="<?php echo $base_uri; ?>/stories">Liste des histoires du site</a>
                     </li>
                     <li class="nav-item dropdown bg-dark">
                         <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +44,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="collapse navbar-collapse justify-content-center" id="navbarLinks">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php">Accueil</a>
+                        <a class="nav-link text-white" href="<?php echo $base_uri; ?>/">Accueil</a>
                     </li>
                     <li class="nav-item dropdown bg-dark">
                         <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,7 +55,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <a class="dropdown-item text-white bg-dark" href="logout.php">Me déconnecter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="l/list">Liste des histoires du site</a>
+                        <a class="nav-link text-white" href="<?php echo $base_uri; ?>/stories">Liste des histoires du site</a>
                     </li>
                     <li class="nav-item dropdown bg-dark">
                         <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

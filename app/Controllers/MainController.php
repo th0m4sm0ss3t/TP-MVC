@@ -28,6 +28,8 @@ class MainController
     // $viewVars = paramètre optionnel (car possède une valeur par défaut, ici, tableau vide)
     public function show($viewName, $viewVars = []) {
 
+    // URL absolue vers le dossier public
+    $base_uri = $_SERVER['BASE_URI'];
     // On inclut l'entête HTML
     require __DIR__.'/../views/header.tpl.php';
     // On inclut le contenu DYNAMIQUEMENT en fonction de la page demandée via $viewNanme de a function show
