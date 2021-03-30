@@ -1,5 +1,8 @@
 <?php
 
+// On inclut autoload de composer
+require __DIR__.'/../vendor/autoload.php';
+
 // On inclut nos classes
 require __DIR__.'/../app/Controllers/MainController.php';
 require __DIR__.'/../app/Controllers/StoryController.php';
@@ -12,7 +15,6 @@ if (!empty($_GET['_url'])) {
 } else {
     $currentUrl = '/';
 }
-
 
 if ($currentUrl === '/') {
     // On instancie un objet $controller
@@ -33,3 +35,7 @@ else {
     // On appelle la méthode souhaitée
     $controller->error404();
 }
+
+// utilisation var-dumper
+// -> commande installation terminal : composer require symfony/var-dumper
+// permet d'utiliser dump || ex : dump($currentUrl);
