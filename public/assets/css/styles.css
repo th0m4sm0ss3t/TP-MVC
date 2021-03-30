@@ -1,0 +1,219 @@
+body {
+    background-color:  rgba( 178, 214, 164, 0.25 );
+    font-family: 'Raleway', sans-serif;
+}
+
+/*** TITLE ***/
+
+.title-header {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 4rem 0;
+}
+
+/*** NAVBAR ***/
+
+.navbar {
+    width: 90%;
+    margin : 1rem auto 2rem;
+}
+
+.text-light:hover {
+    color : black;
+}
+
+/*** GENERAL WRAPPER ***/ 
+
+.wrapper {
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.0px );
+    -webkit-backdrop-filter: blur( 6.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 50%;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.title, .form-footer-p {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/*** FORM ***/
+
+.form-group-password {
+    /*background-color: #f0f;*/
+    display: flex;
+}
+
+.form-group-bottom {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   margin-top: 2rem;
+}
+
+
+.help-block {
+    color: #DC3545;
+}
+
+.show-eye {
+    content: url(img/eye.svg);
+    margin-left: 0.5rem;
+}
+
+.hide-eye {
+    content: url(img/eye-off.svg);
+    margin-left: 0.5rem;
+}
+
+.btn {
+    margin: 0 0.5rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.form-group-bottom-btn {
+    margin-bottom: 0.5rem;
+}
+
+/*** PROFIL ***/
+
+.profil_infos {
+    text-align: center;
+
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.0px );
+    -webkit-backdrop-filter: blur( 6.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 50%;
+    padding: 1rem;
+    margin: 2rem auto;
+}
+
+.add_story_profildiv {
+    width: 75%;
+    padding: 1rem;
+    margin: 5rem auto;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.title_add_story {
+   width: 100%;
+}
+
+/*** INDEX ***/
+.index-wrapper {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.form-group-index {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 45%;
+
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.0px );
+    -webkit-backdrop-filter: blur( 6.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 1rem;
+    margin: 1rem auto;
+}
+
+.svg {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+/*** SEARCH BAR ***/
+
+.form-group-search {
+    display: flex;
+    justify-content: center;
+}
+
+.form-control-search {
+    width: 50%;
+}
+
+.span {
+    font-weight: bold;
+}
+
+.list_result_ul {
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.list_result {
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.0px );
+    -webkit-backdrop-filter: blur( 6.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 1rem;
+    margin: 1rem auto;
+}
+
+.card {
+    margin: 1rem 0;
+}
+
+.card_results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin : 1rem 5rem;
+}
+
+/*** ERROR 404 ***/
+
+.form-group-error {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 75%;
+    margin: 1rem auto;
+}
+
+/*** LISTS | TABLE ***/
+
+.list {
+    width: 75%;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.link-table {
+    color: #343A40;
+    transition: 0.2s;
+}
+
+.link-table:hover {
+    color: #138496;
+}
+
+/*** STORY PAGE ***/
+
+.story_content {
+    width: 75%;
+    margin: 1rem auto;
+}

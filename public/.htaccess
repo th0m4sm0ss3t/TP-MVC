@@ -1,0 +1,18 @@
+# Active le rewrite of the apache url
+RewriteEngine On
+
+# dynamically setup base URI
+# chemin (url) de la page courante depuis localhost
+RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+RewriteRule ^(.*) - [E=BASE_URI:%1]
+
+# redirect every request to index.php
+# and give the relative URL in "_url" GET param
+
+# if file asked is not an existing folder (directory)
+RewriteCond %{REQUEST_FILENAME} !-d
+# if file asked is not an existing file (file)
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# rediriger TOUTES les requêtes qui mène au dossier dans lequel se trouve le .htaccess vers index.php
+RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
