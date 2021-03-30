@@ -29,12 +29,23 @@ $router->map(
 /* STORIES LIST */
 $router->map(
     'GET', 
-    '/list', 
+    '/stories', 
     [
         'controller' => 'StoryController',
         'method' => 'storiesList',
     ], 
-    'list'
+    'stories'
+);
+
+/* READ ONE STORY */
+$router->map(
+    'GET', 
+    '/stories/[i:id]', 
+    [
+        'controller' => 'StoryController',
+        'method' => 'story',
+    ], 
+    'story'
 );
 
 // On vérifie s'il y a un match
@@ -45,10 +56,16 @@ dump($match);
 
 if ($match !== false) {
     // dump($match['target']);
-    /* DONNE : array:2 [
-            "controller" => "MainController"
-            "method" => "home"
-        ]
+    /* DONNE ex :  array:3 [▼
+                    "target" => array:2 [▼
+                        "controller" => "StoryController"
+                        "method" => "storiesList"
+                    ]
+                    "params" => array:1 [▼
+                        "id" => "2"
+                    ]
+                    "name" => "story"
+                ]
     */
     // on appelle notre page
     // Via le controller ...
@@ -59,7 +76,8 @@ if ($match !== false) {
     // On instancie un objet $controller dynamiquement
     $controller = new $controllerName();
     // On appelle la méthode souhaitée dynamiquement
-    $controller->$methodName();
+    // $match['params'] -> permet de récup par ex 1 id de notre url
+    $controller->$methodName($match['params']);
 }
 else {
     // Alors page non trouvée => 404
@@ -71,4 +89,4 @@ else {
 
 // utilisation var-dumper
 // -> commande installation terminal : composer require symfony/var-dumper
-// permet d'utiliser dump || ex : dump($currentUrl);
+// permet d'utiliser dump pour débuguer || ex : dump($currentUrl);
