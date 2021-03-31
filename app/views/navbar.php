@@ -13,10 +13,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <a class="nav-link text-white" href="<?php echo $base_uri; ?>/">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="login.php">Me connecter</a>
+                        <a class="nav-link text-white" href="<?php echo $base_uri; ?>/login">Me connecter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="signup.php">M'inscrire</a>
+                        <a class="nav-link text-white" href="<?php echo $base_uri; ?>/signup">M'inscrire</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo $base_uri; ?>/stories">Liste des histoires du site</a>
@@ -26,8 +26,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         Effectuer une recherche
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-white bg-dark" href="search_bar_stories.php">Par histoire</a>
-                            <a class="dropdown-item text-white bg-dark" href="search_bar_author.php">Par auteur·ice</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchStories">Par histoire</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchAuthor">Par auteur·ice</a>
                     </li>
                 </ul>
             </div>
@@ -51,8 +51,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         Mon profil
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-white bg-dark" href="profil.php">Accéder à mon profil</a>
-                            <a class="dropdown-item text-white bg-dark" href="logout.php">Me déconnecter</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/profil">Accéder à mon profil</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/logout">Me déconnecter</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo $base_uri; ?>/stories">Liste des histoires du site</a>
@@ -62,8 +62,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         Effectuer une recherche
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-white bg-dark" href="search_bar_stories.php">Par histoire</a>
-                            <a class="dropdown-item text-white bg-dark" href="search_bar_author.php">Par auteur·ice</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchStories">Par histoire</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchAuthor">Par auteur·ice</a>
                     </li>
                 </ul>
             </div>

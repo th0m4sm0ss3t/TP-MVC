@@ -6,6 +6,7 @@ require __DIR__.'/../vendor/autoload.php';
 // On inclut nos classes
 require __DIR__.'/../app/Controllers/MainController.php';
 require __DIR__.'/../app/Controllers/StoryController.php';
+require __DIR__.'/../app/Controllers/UserController.php';
 
 // Instanciation de notre object $router
 $router = new AltoRouter();
@@ -48,6 +49,61 @@ $router->map(
     ], 
     'story'
 );
+
+/* AUTHORS LIST */
+$router->map(
+    'GET', 
+    '/authors', 
+    [
+        'controller' => 'AuthorController',
+        'method' => 'authorsList',
+    ], 
+    'authors'
+);
+
+/* VIEW ONE AUTHOR */
+$router->map(
+    'GET', 
+    '/authors/[i:id]', 
+    [
+        'controller' => 'AuthorController',
+        'method' => 'author',
+    ], 
+    'author'
+);
+
+/* LOGIN */
+$router->map(
+    'GET', 
+    '/login', 
+    [
+        'controller' => 'UserController',
+        'method' => 'login',
+    ], 
+    'login'
+);
+
+$router->map(
+    'POST', 
+    '/login', 
+    [
+        'controller' => 'UserController',
+        'method' => 'checkLogin',
+    ], 
+    'checkLogin'
+);
+
+/* LOGOUT */
+$router->map(
+    'GET', 
+    '/logout', 
+    [
+        'controller' => 'UserController',
+        'method' => 'logout',
+    ], 
+    'logout'
+);
+
 
 // On vérifie s'il y a un match
 // Renvoi soit false, soit infos demandées

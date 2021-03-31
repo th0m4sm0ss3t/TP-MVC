@@ -1,0 +1,56 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="424" height="136" view_box="0 0 424 136"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Wed, 31 Mar 2021 07:22:02</desc>
+
+<rect id="frame" x="0" y="0" width="424" height="136" fill="#f5f5f5" stroke="none" stroke-width="0"/>
+
+<!-- Association write -->
+<line x1="47" y1="68" x2="172" y2="68" stroke="#bf812d" stroke-width="2"/>
+<text x="90" y="85.0" fill="#01665e" font-family="Verdana" font-size="12">0,N</text>
+<line x1="321" y1="68" x2="172" y2="68" stroke="#bf812d" stroke-width="2"/>
+<text x="233" y="85.0" fill="#01665e" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-write">
+	<path d="M 181 43 a 14 14 90 0 1 14 14 V 68 h -46 V 57 a 14 14 90 0 1 14 -14" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+	<path d="M 195 68.0 v 11 a 14 14 90 0 1 -14 14 H 163 a 14 14 90 0 1 -14 -14 V 68.0 H 46" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+	<rect x="149" y="43" width="46" height="50" fill="none" rx="14" stroke="#bf812d" stroke-width="2"/>
+	<line x1="149" y1="68" x2="195" y2="68" stroke="#bf812d" stroke-width="1"/>
+	<text x="156" y="60.7" fill="#000000" font-family="Verdana" font-size="12">write</text>
+</g>
+
+<!-- Entity stories -->
+<g id="entity-stories">
+	<g id="frame-stories">
+		<rect x="259" y="17" width="124" height="25" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="259" y="42.0" width="124" height="77" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="259" y="17" width="124" height="102" fill="none" stroke="#35978f" stroke-width="2"/>
+		<line x1="259" y1="42" x2="383" y2="42" stroke="#35978f" stroke-width="1"/>
+	</g>
+	<text x="300" y="34.7" fill="#000000" font-family="Verdana" font-size="12">stories</text>
+	<text x="264" y="59.7" fill="#000000" font-family="Verdana" font-size="12">stories_id</text>
+	<line x1="264" y1="62" x2="323" y2="62" stroke="#000000" stroke-width="1"/>
+	<text x="264" y="76.8" fill="#000000" font-family="Verdana" font-size="12">stories_title</text>
+	<text x="264" y="93.8" fill="#000000" font-family="Verdana" font-size="12">stories_content</text>
+	<text x="264" y="110.8" fill="#000000" font-family="Verdana" font-size="12">stories_created_at</text>
+</g>
+
+<!-- Entity users -->
+<g id="entity-users">
+	<g id="frame-users">
+		<rect x="9" y="9" width="76" height="25" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+		<rect x="9" y="34.0" width="76" height="93" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+		<rect x="9" y="9" width="76" height="118" fill="none" stroke="#35978f" stroke-width="2"/>
+		<line x1="9" y1="34" x2="85" y2="34" stroke="#35978f" stroke-width="1"/>
+	</g>
+	<text x="30" y="26.7" fill="#000000" font-family="Verdana" font-size="12">users</text>
+	<text x="14" y="51.7" fill="#000000" font-family="Verdana" font-size="12">id</text>
+	<line x1="14" y1="54" x2="26" y2="54" stroke="#000000" stroke-width="1"/>
+	<text x="14" y="68.8" fill="#000000" font-family="Verdana" font-size="12">email</text>
+	<text x="14" y="85.8" fill="#000000" font-family="Verdana" font-size="12">username</text>
+	<text x="14" y="102.8" fill="#000000" font-family="Verdana" font-size="12">password</text>
+	<text x="14" y="119.8" fill="#000000" font-family="Verdana" font-size="12">created_at</text>
+</g>
+</svg>
