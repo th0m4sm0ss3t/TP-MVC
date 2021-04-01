@@ -1,5 +1,9 @@
 <?php
 
+namespace TPMVC\Utils;
+
+use PDO;
+
 // Retenir son utilisation  => Database::getPDO()
 // Design Pattern : Singleton
 class Database

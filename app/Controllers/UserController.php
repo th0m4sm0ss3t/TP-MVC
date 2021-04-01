@@ -1,5 +1,9 @@
 <?php
 
+namespace TPMVC\Controllers;
+
+use TPMVC\Models\User;
+
 class UserController extends MainController
 {
     public function login()

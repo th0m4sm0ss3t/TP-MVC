@@ -3,17 +3,21 @@
 // On inclut autoload de composer
 require __DIR__.'/../vendor/autoload.php';
 
+
+/* CHARGES PAR AUTOLOAD AVEC NAMSPACES */
 // On inclut nos controllers
-require __DIR__.'/../app/Controllers/MainController.php';
-require __DIR__.'/../app/Controllers/StoryController.php';
-require __DIR__.'/../app/Controllers/UserController.php';
+// require __DIR__.'/../app/Controllers/MainController.php';
+// require __DIR__.'/../app/Controllers/StoryController.php';
+// require __DIR__.'/../app/Controllers/UserController.php';
 
 // On inclut nos models
-require __DIR__.'/../app/Models/Story.php';
-require __DIR__.'/../app/Models/User.php';
+// require __DIR__.'/../app/Models/Story.php';
+// require __DIR__.'/../app/Models/User.php';
 
 // On inclut notre BDD
-require __DIR__.'/../app/Utils/Database.php';
+// require __DIR__.'/../app/Utils/Database.php';
+/* CHARGES PAR AUTOLOAD AVEC NAMSPACES */
+
 
 // Instanciation de notre object $router
 $router = new AltoRouter();
@@ -29,7 +33,7 @@ $router->map(
     'GET', // méthode HTTP
     '/', // url
     [
-        'controller' => 'MainController', // destination vers controller à utiliser
+        'controller' => 'TPMVC\Controllers\MainController', // destination vers controller à utiliser
         'method' => 'home', // destination vers méthode du controller à utiliser
     ], 
     'home' // nom de la route
@@ -40,7 +44,7 @@ $router->map(
     'GET', 
     '/stories', 
     [
-        'controller' => 'StoryController',
+        'controller' => 'TPMVC\Controllers\StoryController',
         'method' => 'storiesList',
     ], 
     'stories'
@@ -51,7 +55,7 @@ $router->map(
     'GET', 
     '/stories/[i:id]', 
     [
-        'controller' => 'StoryController',
+        'controller' => 'TPMVC\Controllers\StoryController',
         'method' => 'story',
     ], 
     'story'
@@ -62,7 +66,7 @@ $router->map(
     'GET', 
     '/authors', 
     [
-        'controller' => 'AuthorController',
+        'controller' => 'TPMVC\Controllers\AuthorController',
         'method' => 'authorsList',
     ], 
     'authors'
@@ -73,7 +77,7 @@ $router->map(
     'GET', 
     '/authors/[i:id]', 
     [
-        'controller' => 'AuthorController',
+        'controller' => 'TPMVC\Controllers\AuthorController',
         'method' => 'author',
     ], 
     'author'
@@ -84,7 +88,7 @@ $router->map(
     'GET', 
     '/login', 
     [
-        'controller' => 'UserController',
+        'controller' => 'TPMVC\Controllers\UserController',
         'method' => 'login',
     ], 
     'login'
@@ -94,7 +98,7 @@ $router->map(
     'POST', 
     '/login', 
     [
-        'controller' => 'UserController',
+        'controller' => 'TPMVC\Controllers\UserController',
         'method' => 'checkLogin',
     ], 
     'checkLogin'
@@ -105,7 +109,7 @@ $router->map(
     'GET', 
     '/logout', 
     [
-        'controller' => 'UserController',
+        'controller' => 'TPMVC\Controllers\UserController',
         'method' => 'logout',
     ], 
     'logout'
@@ -146,7 +150,7 @@ if ($match !== false) {
 else {
     // Alors page non trouvée => 404
     // On instancie un objet $controller
-    $controller = new MainController();
+    $controller = new TPMVC\Controllers\MainController();
     // On appelle la méthode souhaitée
     $controller->error404();
 }
@@ -154,3 +158,14 @@ else {
 // utilisation var-dumper
 // -> commande installation terminal : composer require symfony/var-dumper
 // permet d'utiliser dump pour débuguer || ex : dump($currentUrl);
+
+// utilisation namespaces
+// dans fichier composer.json ajouter
+/*
+"autoload": {
+        "psr-4": {
+            "TPMVC\\" : "app/"
+        }
+    }
+*/
+// -> commande prise en compte terminal : composer dump-autoload

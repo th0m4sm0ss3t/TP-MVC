@@ -1,5 +1,9 @@
 <?php
 
+namespace TPMVC\Controllers;
+
+use TPMVC\Models\Story;
+
 class StoryController extends MainController
 {
     public function storiesList()

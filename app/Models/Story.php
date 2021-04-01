@@ -1,5 +1,11 @@
 <?php
 
+namespace TPMVC\Models;
+
+use TPMVC\Utils\Database;
+
+use PDO;
+
 class Story
 {
     // Propriétés qui représentent les champs de la table Product
@@ -20,7 +26,7 @@ class Story
         // On exécute la requête
         $pdoStatement = $pdo->query($sql);
         // Si on souhaite récupérer des objets, on utilise l'option FETCH_CLASS + le nom de la classe
-        $stories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Story');
+        $stories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\Story');
         // Si on souhaite utiliser des taleaux associatifs on utilise l'option FETCH_ASSOC
         //$stories = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -39,7 +45,7 @@ class Story
         
         // Si on souhaite utiliser des taleaux associatifs on utilise l'option FETCH_ASSOC
         //$story = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-        $story = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Story');
+        $story = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\Story');
 
         return $story; // Un tableau d'objets
     }

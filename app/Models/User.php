@@ -1,5 +1,11 @@
 <?php
 
+namespace TPMVC\Models;
+
+use TPMVC\Utils\Database;
+
+use PDO;
+
 class User
 {
     // Propriétés qui représentent les champs de la table Product

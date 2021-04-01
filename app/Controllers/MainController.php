@@ -1,5 +1,7 @@
 <?php
 
+namespace TPMVC\Controllers;
+
 class MainController
 {
     // Home
