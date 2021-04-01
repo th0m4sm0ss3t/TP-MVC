@@ -15,7 +15,7 @@ class StoryController extends MainController
 
         // dump($stories);
 
-        $this->show('list', [
+        $this->show('story/list', [
             'title' => 'Liste des histoires',
             'stories' => $stories,
         ]);
@@ -28,7 +28,7 @@ class StoryController extends MainController
         // On appelle la méthode souhaitée
         $story = $storyModel->findOneStoryById($params['id']);
 
-        $this->show('story', [
+        $this->show('story/story', [
             'title' => 'Histoire',
             'story_id' => $params['id'],
             'story' => $story,

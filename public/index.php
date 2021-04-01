@@ -115,6 +115,27 @@ $router->map(
     'logout'
 );
 
+/* LOGOUT */
+$router->map(
+    'GET', 
+    '/signup', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'signup',
+    ], 
+    'signup'
+);
+
+$router->map(
+    'POST', 
+    '/signup', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'checkSignup',
+    ], 
+    'checkSignup'
+);
+
 
 // On vérifie s'il y a un match
 // Renvoi soit false, soit infos demandées

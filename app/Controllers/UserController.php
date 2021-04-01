@@ -8,8 +8,16 @@ class UserController extends MainController
 {
     public function login()
     {
-        $this->show('login', [
+        $this->show('user/login', [
             'title' => 'Se connecter',
+        ]);
+    }
+
+
+    public function signup()
+    {
+        $this->show('user/signup', [
+            'title' => 'S\'inscrire',
         ]);
     }
 }
