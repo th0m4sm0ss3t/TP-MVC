@@ -3,21 +3,8 @@
 // On inclut autoload de composer
 require __DIR__.'/../vendor/autoload.php';
 
-
-/* CHARGES PAR AUTOLOAD AVEC NAMSPACES */
-// On inclut nos controllers
-// require __DIR__.'/../app/Controllers/MainController.php';
-// require __DIR__.'/../app/Controllers/StoryController.php';
-// require __DIR__.'/../app/Controllers/UserController.php';
-
-// On inclut nos models
-// require __DIR__.'/../app/Models/Story.php';
-// require __DIR__.'/../app/Models/User.php';
-
-// On inclut notre BDD
-// require __DIR__.'/../app/Utils/Database.php';
-/* CHARGES PAR AUTOLOAD AVEC NAMSPACES */
-
+// On démarre la Session après l'autoload
+session_start();
 
 // Instanciation de notre object $router
 $router = new AltoRouter();

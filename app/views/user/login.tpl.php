@@ -1,10 +1,9 @@
 <div class="wrapper">
     <h2 class="title">Se connecter</h2>
-
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form method="post" novalidate>
         <div class="form-group">
             <label>Email :</label>
-            <input type="email" name="email" class="form-control" value="">
+            <input type="email" name="email" class="form-control">
         </div>
 
         <div class="form-group">
