@@ -25,7 +25,7 @@ class StoryController extends MainController
         $story = $storyModel->findOneStoryById($params['id']);
 
         $this->show('story', [
-            'title' => 'Histoires',
+            'title' => 'Histoire',
             'story_id' => $params['id'],
             'story' => $story,
         ]);

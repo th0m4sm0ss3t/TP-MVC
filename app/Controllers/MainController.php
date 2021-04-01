@@ -8,18 +8,19 @@ class MainController
         // Premier argument : le nom de la page à inclure
         // Second argument : le tableau (associatif) des données à utiliser
         $this->show('index', [ // ici 'index' = $viewName de la function show
-            'title' => 'Welcome',
+            'title' => 'Accueil',
             'currentNavLink' => 'index',
         ]); 
     }
 
+    // 404
     public function error404()
     {
         // On modifie le status code de la réponse HTTP
         http_response_code(404);
         
         $this->show('error404', [
-            'title' => 'Not found',
+            'title' => 'Erreur 404',
             // On invalide le navLink
             'currentNavLink' => 'null',
         ]);

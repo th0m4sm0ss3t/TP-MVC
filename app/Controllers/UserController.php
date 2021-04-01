@@ -8,12 +8,4 @@ class UserController extends MainController
             'title' => 'Se connecter',
         ]);
     }
-
-    public function story($params)
-    {
-        $this->show('story', [
-            'title' => 'Histoires',
-            'story_id' => $params['id'],
-        ]);
-    }
 }

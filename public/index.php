@@ -10,6 +10,7 @@ require __DIR__.'/../app/Controllers/UserController.php';
 
 // On inclut nos models
 require __DIR__.'/../app/Models/Story.php';
+require __DIR__.'/../app/Models/User.php';
 
 // On inclut notre BDD
 require __DIR__.'/../app/Utils/Database.php';

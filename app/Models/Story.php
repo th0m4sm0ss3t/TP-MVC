@@ -15,14 +15,14 @@ class Story
     {
         // SQL
         $sql = "SELECT stories.stories_id, stories.stories_title, stories.users_id, users.username FROM stories INNER JOIN users ON stories.users_id = id";
-        // On récupère PDO via Database
+        // On récupère une insatnce de PDO via Database
         $pdo = Database::getPDO();
         // On exécute la requête
         $pdoStatement = $pdo->query($sql);
         // Si on souhaite récupérer des objets, on utilise l'option FETCH_CLASS + le nom de la classe
-        //$stories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Story');
+        $stories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Story');
         // Si on souhaite utiliser des taleaux associatifs on utilise l'option FETCH_ASSOC
-        $stories = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+        //$stories = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 
         return $stories; // Un tableau d'objets
     }
@@ -38,7 +38,8 @@ class Story
         $pdoStatement = $pdo->query($sql);
         
         // Si on souhaite utiliser des taleaux associatifs on utilise l'option FETCH_ASSOC
-        $story = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+        //$story = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+        $story = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Story');
 
         return $story; // Un tableau d'objets
     }
