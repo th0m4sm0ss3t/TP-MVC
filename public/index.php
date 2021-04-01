@@ -3,10 +3,16 @@
 // On inclut autoload de composer
 require __DIR__.'/../vendor/autoload.php';
 
-// On inclut nos classes
+// On inclut nos controllers
 require __DIR__.'/../app/Controllers/MainController.php';
 require __DIR__.'/../app/Controllers/StoryController.php';
 require __DIR__.'/../app/Controllers/UserController.php';
+
+// On inclut nos models
+require __DIR__.'/../app/Models/Story.php';
+
+// On inclut notre BDD
+require __DIR__.'/../app/Utils/Database.php';
 
 // Instanciation de notre object $router
 $router = new AltoRouter();

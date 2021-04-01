@@ -10,6 +10,38 @@ class Story
     private $stories_created_at;
     private $stories_users_id;
 
+    // Récupérer une liste d'histoires
+    public function findAllStories()
+    {
+        // SQL
+        $sql = "SELECT stories.stories_id, stories.stories_title, stories.users_id, users.username FROM stories INNER JOIN users ON stories.users_id = id";
+        // On récupère PDO via Database
+        $pdo = Database::getPDO();
+        // On exécute la requête
+        $pdoStatement = $pdo->query($sql);
+        // Si on souhaite récupérer des objets, on utilise l'option FETCH_CLASS + le nom de la classe
+        //$stories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Story');
+        // Si on souhaite utiliser des taleaux associatifs on utilise l'option FETCH_ASSOC
+        $stories = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $stories; // Un tableau d'objets
+    }
+
+    // Récupérer une seule d'histoire via son id
+    public function findOneStoryById($story_id)
+    {
+        // SQL
+        $sql = "SELECT stories.stories_title, stories.stories_content, stories.users_id, users.username FROM stories INNER JOIN users ON stories.users_id = id WHERE stories_id = $story_id";
+        // On récupère PDO via Database
+        $pdo = Database::getPDO();
+        // On exécute la requête
+        $pdoStatement = $pdo->query($sql);
+        
+        // Si on souhaite utiliser des taleaux associatifs on utilise l'option FETCH_ASSOC
+        $story = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $story; // Un tableau d'objets
+    }
     
     /**
      * Get the value of stories_id
