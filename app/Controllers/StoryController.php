@@ -34,4 +34,16 @@ class StoryController extends MainController
             'story' => $story,
         ]);
     }
+
+    public function addStoryView()
+    {
+        $this->show('story/CRUDStory/addStory', [
+            'title' => 'Ajouter une histoire',
+        ]);
+    }
+
+    public function addStoryCreation()
+    {
+       
+    }
 }

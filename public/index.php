@@ -48,6 +48,28 @@ $router->map(
     'story'
 );
 
+/* ADD STORY */
+$router->map(
+    'GET', 
+    '/addStory', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'addStoryView',
+    ], 
+    'addStoryView'
+);
+
+$router->map(
+    'POST', 
+    '/addStory', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'addStoryCreation',
+    ], 
+    'addStoryCreation'
+);
+
+
 /* AUTHORS LIST */
 $router->map(
     'GET', 
