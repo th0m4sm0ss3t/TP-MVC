@@ -13,6 +13,18 @@ class UserController extends MainController
         ]);
     }
 
+    public function logout()
+    {
+        global $router;
+
+        unset($_SESSION['userId']);
+        unset($_SESSION['userObject']);
+        $_SESSION["loggedin"] = false;
+
+        header('Location: ' . $router->generate('login'));
+        exit;
+    }
+
 
     /**
      * POST : Traitement form de login
@@ -40,9 +52,12 @@ class UserController extends MainController
                 $_SESSION['userId'] = $user->getId();
                 // On stocke le user complet
                 $_SESSION['userObject'] = $user;
+                // On affirme que le user est bien connecté
+                $_SESSION["loggedin"] = true;
 
                 // On redirige vers la home
                 header('Location: ' . $router->generate('home'));
+                // dump($email, $password, $_SESSION["loggedin"], $_SESSION['userObject']);
                 exit;
             } else {
                 dump('Mot de passe PAS OK');
