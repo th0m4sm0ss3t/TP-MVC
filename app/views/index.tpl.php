@@ -17,7 +17,7 @@
     <?php
   } else {
     ?>
-    <h2 class="title">Bienvenue <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> !</h2>
+    <h2 class="title">Bienvenue <b><?php echo htmlspecialchars($_SESSION['userObject']->getUsername()); ?></b> !</h2>
     <div class="index-wrapper">
         <div class="form-group-index col-10 col-sm-8 col-md-5">
             <img src="<?php echo $base_uri; ?>/assets/img/access_profil.svg" alt="accéder à mon profil" class="svg">
