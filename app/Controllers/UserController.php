@@ -39,30 +39,53 @@ class UserController extends MainController
 
         // dump($email, $password);
    
-        // 2. On récupère l'utilisateur demandé
-        $user = User::findByEmail($email);
+        // On *initialise* un tableau d'erreurs à vide, au départ, on considère qu'il n'y a pas d'erreurs
+        // Ce tableau stocke les erreurs pour les réafficher dans le formulaire afin que l'utilisateur sache ce qui ne va pas
+        $errorList = [];
 
-        // 3. L'utilisateur est-il trouvé ?
-        if ($user === false) {
-            dump('Utilisateur non trouvé');
-        } else {
-            // Les mots de passe correspondent-ils
-            if (password_verify($password, $user->getPassword())) {
-                // On stocke l'id
-                $_SESSION['userId'] = $user->getId();
-                // On stocke le user complet
-                $_SESSION['userObject'] = $user;
-                // On affirme que le user est bien connecté
-                $_SESSION["loggedin"] = true;
+        // Vérification adresse e-mail
+        if (empty($email)) {
+            $errorList[] = "Veuillez entrer une adresse email.";
+        }
 
-                // On redirige vers la home
-                header('Location: ' . $router->generate('home'));
-                // dump($email, $password, $_SESSION["loggedin"], $_SESSION['userObject']);
-                exit;
+        // Vérification mdp
+        if (empty($password)) {
+            $errorList[] = "Veuillez entrer un mot de passe.";
+        }
+
+        // On passe à l'étape suivante UNIQUEMENT s'il n'y a pas d'erreur
+        if (empty($errorList)) {
+            // 2. On récupère l'utilisateur demandé
+            $user = User::findByEmail($email);
+
+            // 3. L'utilisateur est-il trouvé ?
+            if ($user === false) {
+                $errorList[] = 'Cette adresse mail ne correspond à aucun compte.';
             } else {
-                dump('Mot de passe PAS OK');
+                // Les mots de passe correspondent-ils
+                if (password_verify($password, $user->getPassword())) {
+                    // On stocke l'id
+                    $_SESSION['userId'] = $user->getId();
+                    // On stocke le user complet
+                    $_SESSION['userObject'] = $user;
+                    // On affirme que le user est bien connecté
+                    $_SESSION["loggedin"] = true;
+
+                    // On redirige vers la home
+                    header('Location: ' . $router->generate('home'));
+                    // dump($email, $password, $_SESSION["loggedin"], $_SESSION['userObject']);
+                    exit;
+                } else {
+                    $errorList[] = 'Le mot de passe entré n\'est pas valide.';
+                }
             }
         }
+        
+        // Si le script arrive ici, c'est qu'il y a des erreurs !
+        $this->show('user/login', [
+            'title' => 'Se connecter',
+            'errorList' => $errorList,
+        ]);
     }
 
 

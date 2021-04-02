@@ -7,12 +7,20 @@
         </div>
 
         <div class="form-group">
-                <label>Mot de passe :</label>
-                <div class="form-group form-group-password">
-                    <input type="password" name="password" class="form-control" id="passwordField">
-                    <span onclick="toggle()" class="togglespan show-eye eye"></span>
-                </div>
+            <label>Mot de passe :</label>
+            <div class="form-group form-group-password">
+                <input type="password" name="password" class="form-control" id="passwordField">
+                <span onclick="toggle()" class="togglespan show-eye eye"></span>
             </div>
+        </div>
+
+        <?php if (!empty($viewVars['errorList'])) : ?>
+                <?php foreach ($viewVars['errorList'] as $key => $error) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
 
         <div class="form_group form-group-bottom">
             <input type="submit" class="btn btn-success" value="Se connecter">
