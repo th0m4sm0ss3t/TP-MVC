@@ -52,6 +52,35 @@ class User
         return $user;
     }
 
+    public static function findUserStoriesInfos($userId)
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "SELECT stories_id, stories_title, stories_created_at, users_id FROM stories WHERE users_id = $userId";
+        
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->execute();
+
+        $userStoriesInfos = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\User');
+
+        return $userStoriesInfos;
+    }
+
+    /* GET ONLY THE DATE OF STORIES FROM 1 USER */
+    public static function findDateUserStories($userId)
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "SELECT stories_created_at FROM stories WHERE users_id = $userId";
+        
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->execute();
+
+        $userStoriesDate = $pdoStatement->fetchObject(self::class);
+
+        return $userStoriesDate;
+    }
+
 
     /**
      * Get the value of id

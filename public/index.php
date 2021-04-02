@@ -124,6 +124,18 @@ $router->map(
 );
 
 
+/* USER'S PROFIL */
+$router->map(
+    'GET', 
+    '/profil', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'userProfil',
+    ], 
+    'profil'
+);
+
+
 // On vérifie s'il y a un match
 // Renvoi soit false, soit infos demandées
 $match = $router->match();

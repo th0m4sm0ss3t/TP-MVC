@@ -99,4 +99,26 @@ class UserController extends MainController
     public function checkSignup() {
 
     }
+
+    public function userProfil() {
+        $userId = $_SESSION['userId']; // get user's id
+
+        // On inclu notre model User
+        $userModel = new User();
+
+        // On appelle la méthode souhaitée
+        $userStoriesInfos = $userModel->findUserStoriesInfos($userId);
+
+        $todaysDate = $this->dateToFrench("now" ,"l j F Y"); // récupère date actuelle au format fr
+        $timestamp = time(); // récupère heure actuelle
+
+
+        $this->show('user/profil', [
+            'title' => 'Profil',
+            'todaysDate' => $todaysDate,
+            'timestamp' => $timestamp,
+            'userId' => $userId,
+            'userStoriesInfos' => $userStoriesInfos,
+        ]);
+    }
 }
