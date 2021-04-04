@@ -63,8 +63,8 @@ class UserController extends MainController
                 $errorList[] = 'Cette adresse mail ne correspond à aucun compte.';
             } else {
                 // Les mots de passe correspondent-ils
-                //if (password_verify($password, $user->getPassword())) {
-                if ($password === $user->getPassword()) {
+                if (password_verify($password, $user->getPassword())) {
+                //if ($password === $user->getPassword()) {
                     // On stocke l'id
                     $_SESSION['userId'] = $user->getId();
                     // On stocke le user complet

@@ -69,6 +69,17 @@ $router->map(
     'addStoryCreation'
 );
 
+/* STORY ADDED SUCCESSFULLY */
+$router->map(
+    'GET', 
+    '/storyAddConfirmation', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'storyAddConfirmation',
+    ], 
+    'storyAddConfirmation'
+);
+
 
 /* AUTHORS LIST */
 $router->map(
@@ -165,8 +176,6 @@ $router->map(
     ], 
     'checkResetPassword'
 );
-
-
 
 /* USER'S PROFIL */
 $router->map(

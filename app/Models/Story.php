@@ -50,22 +50,56 @@ class Story
         return $story; // Un tableau d'objets
     }
 
+    public static function findByTitle($stories_title)
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "SELECT * FROM stories WHERE stories_title = :stories_title";
+        
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':stories_title', $stories_title, PDO::PARAM_STR);
+        $pdoStatement->execute();
+
+        $user = $pdoStatement->fetchObject(self::class);
+
+        return $user;
+    }
+
     // Ajoute une histoire liée à son user en database
     public function insertStory($user_id)
     {
         // PDO
         $pdo = Database::getPDO();
+
+        // Requête pour recupérer l'id du user qui poste l'histoire
+        $sqlForUserId = "SELECT id FROM users WHERE id = $user_id";
         
         // La requête
-        /*$sql = "INSERT INTO `stories` (`stories_title`, `stories_content`, `users_id`) VALUES ('{$this->stories_title}', '{$this->stories_content}', '(SELECT id FROM users WHERE id = $user_id)')";*/
+        $sql = "INSERT INTO `stories` (`stories_title`, `stories_content`, `users_id`) VALUES (:stories_title, :stories_content, ($sqlForUserId))";
 
-        $sql = "INSERT INTO stories (stories_title, stories_content, users_id) VALUES ({$this->stories_title}, {$this->stories_content}, (SELECT id FROM users WHERE id = $user_id))";
+        //dump($sql);
 
-        dump($sql);
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
 
-        // Exec exécute la requête et retourne le nombre de lignes ajoutées
-        $insertedRows = $pdo->exec($sql);
-        dump($insertedRows);
+        // On binde
+        $pdoStatement->bindParam(":stories_title", $this->stories_title, PDO::PARAM_STR);
+        $pdoStatement->bindParam(":stories_content", $this->stories_content, PDO::PARAM_STR);
+        //$pdoStatement->bindParam(":users_id", $user_id, PDO::PARAM_INT);
+
+        // Execute exécute la requête et retourne le nombre de lignes ajoutées
+        $insertedRows = $pdoStatement->execute();
+        
+        // Si au moins une ligne ajoutée
+        if ($insertedRows > 0) {
+            // Alors on récupère l'id auto-incrémenté généré par MySQL
+            $this->id = $pdo->lastInsertId();
+            // On retourne VRAI car l'ajout a parfaitement fonctionné
+            return true;
+        } else {
+            // Si on arrive ici, c'est que quelque chose n'a pas bien fonctionné
+            return false;
+        }
     }
 
     

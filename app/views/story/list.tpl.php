@@ -33,8 +33,7 @@
   } else {
     ?>
     <div class="form-group-bottom">
-      <a href="profil.php" class="btn bg-secondary text-white">Retourner sur mon profil</a>
-      <a href="search_bar.php" class="btn bg-dark text-white">Effectuer une recherche</a>
+      <a href="<?= $base_uri; ?>/profil" class="btn bg-secondary text-white">Retourner sur mon profil</a>
     </div>
     <?php
   }
