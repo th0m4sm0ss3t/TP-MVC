@@ -111,6 +111,46 @@ class UserController extends MainController
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
         $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
 
+        // On *initialise* un tableau d'erreurs à vide, au départ, on considère qu'il n'y a pas d'erreurs
+        // Ce tableau stocke les erreurs pour les réafficher dans le formulaire afin que l'utilisateur sache ce qui ne va pas
+        $errorList = [];
+
+        // Vérification adresse e-mail
+        if (empty($email)) {
+            $errorList[] = "Veuillez entrer une adresse email.";
+        } elseif (User::findByEmail($email) !== false) {
+            // Adresse existe en database
+            $errorList[] = 'Adresse e-mail déja existante dans la base de données.';
+        }
+
+        // Vérification pseudo
+        if (empty($username)) {
+            $errorList[] = "Veuillez entrer un pseudo.";
+        } elseif (User::findByUsername($username) !== false) {
+            // Pseudo existe en database
+            $errorList[] = 'Pseudo déja existant dans la base de données.';
+        }
+
+        // Vérification mdp
+        if (empty($password)) {
+            $errorList[] = "Veuillez entrer un mot de passe.";
+        } 
+        
+        // Vérification longueur mdp > 6 caractères
+        if (strlen($password) < 6) {
+            $errorList[] = "Le mot de passe doit contenir au moins 6 caractères.";
+        }
+
+        // Vérification confirmation de mdp
+        if (empty($confirm_password)) {
+            $errorList[] = "Veuillez entrer une confirmation de mot de passe.";
+        }
+
+        // Checking if the password entered by the user is equal to the "confim password"
+        if ($password !== $confirm_password) {
+            $errorList[] = "Les mots de passe ne correspondent pas.";
+        }
+
         //dump($email, $username, $password, $confirm_password);
         // Etape 2, on crée un nouveau user
         $user = New User();
@@ -122,16 +162,25 @@ class UserController extends MainController
 
         //dump($user);
 
-        // On appelle la méthode insert()
-        $userAddedSuccessfully = $user->createUser();
+        // On passe à l'étape suivante UNIQUEMENT s'il n'y a pas d'erreur
+        if (empty($errorList)) {
+            // On appelle la méthode insert()
+            $userAddedSuccessfully = $user->createUser();
 
-        if($userAddedSuccessfully) {
-            // Redirection vers login
-            header('Location: ' . $router->generate('login'));
-            exit;
-        } else {
-            dump('User non-enregistré');
+            if($userAddedSuccessfully) {
+                // Redirection vers login
+                header('Location: ' . $router->generate('login'));
+                exit;
+            } else {
+                dump('User non-enregistré');
+            }
         }
+
+        // Si le script arrive ici, c'est qu'il y a des erreurs !
+        $this->show('user/signup', [
+            'title' => 'S\'inscrire',
+            'errorList' => $errorList,
+        ]);
     }
 
     public function userProfil() {

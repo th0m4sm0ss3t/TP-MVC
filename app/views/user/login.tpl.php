@@ -15,12 +15,12 @@
         </div>
 
         <?php if (!empty($viewVars['errorList'])) : ?>
-                <?php foreach ($viewVars['errorList'] as $key => $error) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= $error; ?>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
+            <?php foreach ($viewVars['errorList'] as $key => $error) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $error; ?>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
         <div class="form_group form-group-bottom">
             <input type="submit" class="btn btn-success" value="Se connecter">

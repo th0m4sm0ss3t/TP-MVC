@@ -37,6 +37,26 @@ class User
         return $user;
     }
 
+    public static function findByUsername($username) {
+
+        // On récupère une insatnce de PDO via Database
+        $pdo = Database::getPDO();
+        // SQL
+        $sql = "SELECT * FROM users WHERE username = :username";
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+        // On binde notre valeur
+        $pdoStatement->bindValue(":username", $username, PDO::PARAM_STR);
+        // On exécute la requête
+        $pdoStatement->execute();
+        // On récupère un objet
+        $user = $pdoStatement->fetchObject(self::class);
+        
+        // fectchObject() retourne soit un objet de type AppUser
+        // soit false
+        return $user;
+    }
+
     public static function findUserById($id)
     {
         $pdo = Database::getPDO();

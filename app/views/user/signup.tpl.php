@@ -28,6 +28,14 @@
             </div>
         </div>
 
+        <?php if (!empty($viewVars['errorList'])) : ?>
+            <?php foreach ($viewVars['errorList'] as $key => $error) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $error; ?>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
         <div class="form-group form-group-bottom">
             <input type="submit" class="btn btn-success" value="S'inscrire">
             <input type="reset" class="btn btn-danger" value="Annuler">
