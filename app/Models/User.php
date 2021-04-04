@@ -138,6 +138,31 @@ class User
         }
     }
 
+    /* RESET PASSWORD */
+    public function resetPassword(){
+        // PDO
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "UPDATE `users` SET `password` = :password WHERE id = :id";
+
+        //dump($sql);
+
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT); // For security and against XSS attacks, we use password_hash(); to hash the password.
+
+        $pdoStatement->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
+        $pdoStatement->bindParam(":id", $this->id, PDO::PARAM_INT);
+        
+        // Exec exécute la requête et retourne le nombre de lignes ajoutées
+        $updatedRows = $pdoStatement->execute();
+
+        // On retourne VRAI, si au moins une ligne ajoutée
+        return ($updatedRows > 0);
+    }
+
 
     /**
      * Get the value of id

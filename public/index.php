@@ -145,6 +145,28 @@ $router->map(
     'checkSignup'
 );
 
+/* RESET PASSWORD */
+$router->map(
+    'GET', 
+    '/resetPassword', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'resetPassword',
+    ], 
+    'resetPassword'
+);
+
+$router->map(
+    'POST', 
+    '/resetPassword', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'checkResetPassword',
+    ], 
+    'checkResetPassword'
+);
+
+
 
 /* USER'S PROFIL */
 $router->map(

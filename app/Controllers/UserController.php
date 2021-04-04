@@ -63,7 +63,8 @@ class UserController extends MainController
                 $errorList[] = 'Cette adresse mail ne correspond à aucun compte.';
             } else {
                 // Les mots de passe correspondent-ils
-                if (password_verify($password, $user->getPassword())) {
+                //if (password_verify($password, $user->getPassword())) {
+                if ($password === $user->getPassword()) {
                     // On stocke l'id
                     $_SESSION['userId'] = $user->getId();
                     // On stocke le user complet
@@ -202,6 +203,74 @@ class UserController extends MainController
             'timestamp' => $timestamp,
             'userId' => $userId,
             'userStoriesInfos' => $userStoriesInfos,
+        ]);
+    }
+
+    public function resetPassword()
+    {
+        $this->show('user/resetPassword', [
+            'title' => 'Modifier son mot de passe',
+        ]);
+    }
+
+    public function checkResetPassword()
+    {
+        global $router;
+
+        // 1. Récupérer password et confirmation password
+        $new_password = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
+        $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+
+        //dump($new_password, $confirm_password);
+
+        // On *initialise* un tableau d'erreurs à vide, au départ, on considère qu'il n'y a pas d'erreurs
+        // Ce tableau stocke les erreurs pour les réafficher dans le formulaire afin que l'utilisateur sache ce qui ne va pas
+        $errorList = [];
+
+        // Vérification mdp
+        if(empty($new_password)) {
+            $errorList[] = "Veuillez entrer un nouveau mot de passe.";
+        }
+
+        // Vérification longueur mdp > 6 caractères
+        if (strlen($new_password) < 6) {
+            $errorList[] = "Le mot de passe doit contenir au moins 6 caractères.";
+        }
+
+        // Vérification confirm mdp
+        if(empty($confirm_password)) {
+            $errorList[] = "Veuillez entrer une confirmation de mot de passe.";
+        }
+
+        // Checking if the password entered by the user is equal to the "confim password"
+        if ($new_password !== $confirm_password) {
+            $errorList[] = "Les mots de passe ne correspondent pas.";
+        }
+
+        $userId = $_SESSION['userId'];
+
+        $user = User::findUserById($userId);
+
+        // dump($user, $userId);
+
+        // On défini les propriétés du user via les SETTERS
+        $user->setPassword($new_password);
+
+        // On passe à l'étape suivante UNIQUEMENT s'il n'y a pas d'erreur
+        if (empty($errorList)) {
+            // On appelle la méthode resetPassword()
+            $passwordChangedSuccessfully = $user->resetPassword();
+        }
+
+        if ($passwordChangedSuccessfully) {
+            // On redirige vers le profil
+            header('Location: ' . $router->generate('profil'));
+            exit;
+        }
+
+        $this->show('user/resetPassword', [
+            'title' => 'Modifier son mot de passe',
+            'errorList' => $errorList,
         ]);
     }
 }
