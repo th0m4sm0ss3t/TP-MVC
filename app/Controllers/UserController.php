@@ -96,8 +96,42 @@ class UserController extends MainController
         ]);
     }
 
-    public function checkSignup() {
+    /*
+    register@test.com
+    Register Test (username)
+    register (mpd)
+    */
 
+    public function checkSignup() {
+        global $router;
+
+        // 1. Récupérer email, password, confirm-password, pseudo
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+
+        //dump($email, $username, $password, $confirm_password);
+        // Etape 2, on crée un nouveau user
+        $user = New User();
+
+        // On défini les propriétés du user via les SETTERS
+        $user->setEmail($email);
+        $user->setUsername($username);
+        $user->setPassword($password);
+
+        //dump($user);
+
+        // On appelle la méthode insert()
+        $userAddedSuccessfully = $user->createUser();
+
+        if($userAddedSuccessfully) {
+            // Redirection vers login
+            header('Location: ' . $router->generate('login'));
+            exit;
+        } else {
+            dump('User non-enregistré');
+        }
     }
 
     public function userProfil() {

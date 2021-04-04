@@ -124,7 +124,7 @@ $router->map(
     'logout'
 );
 
-/* LOGOUT */
+/* SIGNUP */
 $router->map(
     'GET', 
     '/signup', 

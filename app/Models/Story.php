@@ -49,6 +49,25 @@ class Story
 
         return $story; // Un tableau d'objets
     }
+
+    // Ajoute une histoire liée à son user en database
+    public function insertStory($user_id)
+    {
+        // PDO
+        $pdo = Database::getPDO();
+        
+        // La requête
+        /*$sql = "INSERT INTO `stories` (`stories_title`, `stories_content`, `users_id`) VALUES ('{$this->stories_title}', '{$this->stories_content}', '(SELECT id FROM users WHERE id = $user_id)')";*/
+
+        $sql = "INSERT INTO stories (stories_title, stories_content, users_id) VALUES ({$this->stories_title}, {$this->stories_content}, (SELECT id FROM users WHERE id = $user_id))";
+
+        dump($sql);
+
+        // Exec exécute la requête et retourne le nombre de lignes ajoutées
+        $insertedRows = $pdo->exec($sql);
+        dump($insertedRows);
+    }
+
     
     /**
      * Get the value of stories_id

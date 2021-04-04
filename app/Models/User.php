@@ -81,6 +81,43 @@ class User
         return $userStoriesDate;
     }
 
+    /* CREATE 1 USER */
+    public function createUser()
+    {
+        // PDO
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "INSERT INTO `users` (`email`, `username`, `password`) VALUES (:email, :username, :password)";
+
+        // dump($sql);
+
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT); // For security and against XSS attacks, we use password_hash(); to hash the password.
+
+        $pdoStatement->bindParam(":email", $this->email, PDO::PARAM_STR);
+        $pdoStatement->bindParam(":username", $this->username, PDO::PARAM_STR);
+        $pdoStatement->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
+
+        //dump($hashedPassword);
+
+        // Exec exécute la requête et retourne le nombre de lignes ajoutées
+        $insertedRows = $pdoStatement->execute();
+
+        // Si au moins une ligne ajoutée
+        if ($insertedRows > 0) {
+            // Alors on récupère l'id auto-incrémenté généré par MySQL
+            $this->id = $pdo->lastInsertId();
+            // On retourne VRAI car l'ajout a parfaitement fonctionné
+            return true;
+        } else {
+            // Si on arrive ici, c'est que quelque chose n'a pas bien fonctionné
+            return false;
+        }
+    }
+
 
     /**
      * Get the value of id
