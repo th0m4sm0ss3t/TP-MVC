@@ -92,7 +92,7 @@ class UserController extends MainController
 
     public function signup()
     {
-        $this->show('user/signup', [
+        $this->show('user/CRUDUser/signup', [
             'title' => 'S\'inscrire',
         ]);
     }
@@ -178,7 +178,7 @@ class UserController extends MainController
         }
 
         // Si le script arrive ici, c'est qu'il y a des erreurs !
-        $this->show('user/signup', [
+        $this->show('user/CRUDUser/signup', [
             'title' => 'S\'inscrire',
             'errorList' => $errorList,
         ]);
@@ -208,7 +208,7 @@ class UserController extends MainController
 
     public function resetPassword()
     {
-        $this->show('user/resetPassword', [
+        $this->show('user/CRUDUser/resetPassword', [
             'title' => 'Modifier son mot de passe',
         ]);
     }
@@ -268,7 +268,7 @@ class UserController extends MainController
             exit;
         }
 
-        $this->show('user/resetPassword', [
+        $this->show('user/CRUDUser/resetPassword', [
             'title' => 'Modifier son mot de passe',
             'errorList' => $errorList,
         ]);
@@ -276,7 +276,7 @@ class UserController extends MainController
 
     public function deleteProfil()
     {
-        $this->show('user/deleteProfil', [
+        $this->show('user/CRUDUser/deleteProfil', [
             'title' => 'Supprimer mon profil',
         ]);
     }
@@ -335,7 +335,7 @@ class UserController extends MainController
             }
         }
 
-        $this->show('user/deleteProfil', [
+        $this->show('user/CRUDUser/deleteProfil', [
             'title' => 'Supprimer mon profil',
             'errorList' => $errorList,
         ]);
