@@ -1,3 +1,10 @@
+<?php
+// Check if the user is logged in, if not then redirect them to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login");
+    exit;
+}
+?>
 
 <div class="page-header">
     <h1 class="title">Bienvenue sur votre profil <b><?php echo htmlspecialchars($_SESSION['userObject']->getUsername()); ?></b> !</h1>

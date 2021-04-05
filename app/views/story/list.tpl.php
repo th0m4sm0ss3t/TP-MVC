@@ -27,7 +27,7 @@
   if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     ?>
     <div class="form-group-bottom">
-      <a href="login.php" class="btn bg-secondary text-white">Me connecter</a>
+      <a href="<?= $base_uri; ?>/login" class="btn bg-secondary text-white">Me connecter</a>
     </div>
     <?php
   } else {
