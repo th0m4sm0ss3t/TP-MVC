@@ -163,6 +163,24 @@ class User
         return ($updatedRows > 0);
     }
 
+    /* DELETE USER */
+    public function deleteUser() {
+        // PDO
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "DELETE FROM `users` WHERE email = :email";
+
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindParam(":email", $this->email, PDO::PARAM_STR);
+
+        $updatedRows = $pdoStatement->execute();
+
+        // On retourne VRAI, si au moins une ligne ajoutée
+        return ($updatedRows > 0);
+    }
 
     /**
      * Get the value of id

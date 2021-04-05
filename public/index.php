@@ -188,6 +188,38 @@ $router->map(
     'profil'
 );
 
+/* DELETE USER'S PROFIL */
+$router->map(
+    'GET', 
+    '/deleteProfil', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'deleteProfil',
+    ], 
+    'deleteProfil'
+);
+
+$router->map(
+    'POST', 
+    '/deleteProfil', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'checkDeleteProfil',
+    ], 
+    'checkDeleteProfil'
+);
+
+/* USER'S PROFIL DELETED CONFIRMATION */
+$router->map(
+    'GET', 
+    '/profilDeletedConfirmation', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'profilDeletedConfirmation',
+    ], 
+    'profilDeletedConfirmation'
+);
+
 
 // On vérifie s'il y a un match
 // Renvoi soit false, soit infos demandées

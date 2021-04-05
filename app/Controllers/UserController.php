@@ -273,4 +273,78 @@ class UserController extends MainController
             'errorList' => $errorList,
         ]);
     }
+
+    public function deleteProfil()
+    {
+        $this->show('user/deleteProfil', [
+            'title' => 'Supprimer mon profil',
+        ]);
+    }
+
+    public function checkDeleteProfil()
+    {
+        global $router;
+
+        // 1. Récupérer email, password, confirm-password, pseudo
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+        //dump($email, $password);
+
+        // User's info
+        $user = User::findByEmail($email);
+
+        // Get the user's email via their session
+        $user_session_email = $_SESSION['userObject']->getEmail();
+
+        // On *initialise* un tableau d'erreurs à vide, au départ, on considère qu'il n'y a pas d'erreurs
+        // Ce tableau stocke les erreurs pour les réafficher dans le formulaire afin que l'utilisateur sache ce qui ne va pas
+        $errorList = [];
+
+        // Vérification adresse e-mail
+        if (empty($email)) {
+            $errorList[] = "Veuillez entrer une adresse email.";
+        } elseif ($email !== $user_session_email) {
+            // Adresse correspond pas au user en session
+            $errorList[] = 'L\'adresse e-mail rentrée ne correspond pas à votre compte.';
+        }
+
+        // Vérification mdp
+        if (empty($password)) {
+            $errorList[] = "Veuillez entrer un mot de passe.";
+        // mdp ne matche pas avec le compte
+        } elseif (!password_verify($password, $user->getPassword())) {
+            $errorList[] = "Le mot de passe entré n'est pas valide.";
+        }
+
+        // On passe à l'étape suivante UNIQUEMENT s'il n'y a pas d'erreur
+        if (empty($errorList)) {
+            // On appelle la méthode deleteUser()
+            $userDeletedSuccessfully = $user->deleteUser();
+
+            if ($userDeletedSuccessfully) {
+                session_destroy();
+                
+                // On redirige vers la home
+                header('Location: ' . $router->generate('profilDeletedConfirmation'));
+
+                // On ne veut pas exécuter de code supplémentaire
+                exit;
+            } else {
+                dump('User non-supprimé');
+            }
+        }
+
+        $this->show('user/deleteProfil', [
+            'title' => 'Supprimer mon profil',
+            'errorList' => $errorList,
+        ]);
+    }
+
+    public function profilDeletedConfirmation()
+    {
+        $this->show('user/profilDeletedConfirmation', [
+            'title' => 'Profil supprimé',
+        ]);
+    }
 }
