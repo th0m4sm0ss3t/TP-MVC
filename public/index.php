@@ -91,6 +91,48 @@ $router->map(
     'author'
 );
 
+/* SEARCH STORY */
+$router->map(
+    'GET', 
+    '/searchStory', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'searchStory',
+    ], 
+    'searchStory'
+);
+
+$router->map(
+    'POST', 
+    '/searchStory', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'checkSearchStory',
+    ], 
+    'checkSearchStory'
+);
+
+/* SEARCH AUTHOR */
+$router->map(
+    'GET', 
+    '/searchAuthor', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'searchAuthor',
+    ], 
+    'searchAuthor'
+);
+
+$router->map(
+    'POST', 
+    '/searchAuthor', 
+    [
+        'controller' => 'TPMVC\Controllers\UserController',
+        'method' => 'checkSearchAuthor',
+    ], 
+    'checkSearchAuthor'
+);
+
 /* LOGIN */
 $router->map(
     'GET', 

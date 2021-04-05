@@ -20,8 +20,8 @@
 | `/searchStory` | `GET` | `StoryController` | `searchStory` | Rechercher une histoire | Access to the search form | |
 | `/searchStory` | `POST` | `StoryController` | `checkSearchStory` | Rechercher une histoire | - | |
 | `/authors/[i:id]` | `GET` | `StoryController` | `authorStories` | #Author's name# |  List the author's stories | [id] represents the id of the author |
-| `/searchAuthor` | `GET` | `StoryController` | `searchAuthor` | Rechercher un·e auteur·ice | Access to the search form | |
-| `/searchAuthor` | `POST` | `StoryController` | `checkSearchAuthor` | Rechercher un·e auteur·ice | - | |
+| `/searchAuthor` | `GET` | `UserController` | `searchAuthor` | Rechercher un·e auteur·ice | Access to the search form | |
+| `/searchAuthor` | `POST` | `UserController` | `checkSearchAuthor` | Rechercher un·e auteur·ice | - | |
 | `/login` | `GET` | `UserController` | `login` | Se connecter | Access to login form | |
 | `/login` | `POST` | `UserController` | `checkLogin` | Se connecter | - | |
 | `/logout` | `POST` | `UserController` | `checkLogout` | - | - | |
