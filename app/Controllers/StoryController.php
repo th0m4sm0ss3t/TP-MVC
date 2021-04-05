@@ -35,6 +35,19 @@ class StoryController extends MainController
         ]);
     }
 
+    public function authorStories($params) {
+        // On inclu notre model Story
+        $storyModel = new Story();
+        // On appelle la méthode souhaitée
+        $stories = $storyModel->findAuthorStoriesById($params['id']);
+
+        $this->show('author/author', [
+            'title' => 'Histoire(s) de cet auteur / cette autrice',
+            'author_id' => $params['id'],
+            'stories' => $stories,
+        ]);
+    }
+
     public function addStoryView()
     {
         $this->show('story/CRUDStory/addStory', [

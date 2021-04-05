@@ -8,7 +8,7 @@ use PDO;
 
 class Story
 {
-    // Propriétés qui représentent les champs de la table Product
+    // Propriétés qui représentent les champs de la table stories
     // On les nomme de la même façon
     private $stories_id;
     private $stories_title;
@@ -48,6 +48,24 @@ class Story
         $story = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\Story');
 
         return $story; // Un tableau d'objets
+    }
+
+    public function findAuthorStoriesById($author_id)
+    {
+        // On récupère PDO via Database
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "SELECT stories.stories_id, stories.stories_title, stories.stories_content, stories.users_id, users.username FROM stories INNER JOIN users ON stories.users_id = id WHERE users_id = $author_id";
+
+        // On exécute la requête
+        $pdoStatement = $pdo->query($sql);
+
+        $pdoStatement->execute(); 
+
+        $stories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\Story');
+
+        return $stories; // Un tableau d'objets
     }
 
     public static function findByTitle($stories_title)

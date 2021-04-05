@@ -80,25 +80,13 @@ $router->map(
     'storyAddConfirmation'
 );
 
-
-/* AUTHORS LIST */
-$router->map(
-    'GET', 
-    '/authors', 
-    [
-        'controller' => 'TPMVC\Controllers\AuthorController',
-        'method' => 'authorsList',
-    ], 
-    'authors'
-);
-
 /* VIEW ONE AUTHOR */
 $router->map(
     'GET', 
     '/authors/[i:id]', 
     [
-        'controller' => 'TPMVC\Controllers\AuthorController',
-        'method' => 'author',
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'authorStories',
     ], 
     'author'
 );
