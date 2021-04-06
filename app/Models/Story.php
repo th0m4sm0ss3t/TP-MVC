@@ -34,10 +34,10 @@ class Story
     }
 
     // Récupérer une seule d'histoire via son id
-    public function findOneStoryById($story_id)
+    public static function findOneStoryById($story_id)
     {
         // SQL
-        $sql = "SELECT stories.stories_title, stories.stories_content, stories.users_id, users.username FROM stories INNER JOIN users ON stories.users_id = id WHERE stories_id = $story_id";
+        $sql = "SELECT stories.stories_id, stories.stories_title, stories.stories_content, stories.users_id, users.username FROM stories INNER JOIN users ON stories.users_id = id WHERE stories_id = $story_id";
         // On récupère PDO via Database
         $pdo = Database::getPDO();
         // On exécute la requête
@@ -45,9 +45,11 @@ class Story
         
         // Si on souhaite utiliser des taleaux associatifs on utilise l'option FETCH_ASSOC
         //$story = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-        $story = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\Story');
+        
+        //$story = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\Story');
+        $story = $pdoStatement->fetchObject(self::class);
 
-        return $story; // Un tableau d'objets
+        return $story; // Un objet
     }
 
     public function findAuthorStoriesById($author_id)
@@ -118,6 +120,29 @@ class Story
             // Si on arrive ici, c'est que quelque chose n'a pas bien fonctionné
             return false;
         }
+    }
+
+    // Maj d'une histoire
+    public function updateStory($story_id)
+    {
+        // On récupère PDO via Database
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "UPDATE `stories` SET `stories_title` = :stories_title, `stories_content` = :stories_content WHERE `stories_id` = $story_id";
+
+        // dump($sql);
+
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindParam(":stories_title", $this->stories_title, PDO::PARAM_STR);
+        $pdoStatement->bindParam(":stories_content", $this->stories_content, PDO::PARAM_STR);
+
+        $updatedRows = $pdoStatement->execute();
+
+        // On retourne VRAI, si au moins une ligne ajoutée
+        return ($updatedRows > 0);
     }
 
     

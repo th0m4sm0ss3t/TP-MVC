@@ -35,6 +35,78 @@ class StoryController extends MainController
         ]);
     }
 
+    public function updateStory($params)
+    {
+        // On inclu notre model Story
+        $storyModel = new Story();
+        // On appelle la méthode souhaitée
+        $story = $storyModel->findOneStoryById($params['id']);
+
+        $this->show('story/CRUDStory/updateStory', [
+            'title' => 'Modifer une histoire',
+            'story_id' => $params['id'],
+            'story' => $story,
+        ]);
+    }
+
+    public function checkUpdateStory($params)
+    {
+        global $router;
+
+        $stories_title = filter_input(INPUT_POST, 'stories_title', FILTER_SANITIZE_STRING);
+        $stories_content = filter_input(INPUT_POST, 'stories_content',FILTER_SANITIZE_STRING);
+
+        // dump($stories_title, $stories_content);
+
+        $errorList = [];
+
+        // Vérification titre
+        if (empty($stories_title)) {
+            $errorList[] = "Veuillez entrer un titre pour votre histoire.";
+        } elseif (Story::findByTitle($stories_title) !== false) {
+            // Titre existe déjà en database
+            $errorList[] = 'Titre d\'histoire déja existant dans la base de données.';
+        }
+
+        // Vérification contenu
+        if (empty($stories_content)) {
+            $errorList[] = "Veuillez entrer du contenu pour votre histoire.";
+        }
+
+        $story_id = $params['id'];
+
+        // On appelle la méthode souhaitée
+        $story = Story::findOneStoryById($story_id);
+
+        // On défini les propriétés de la story via les SETTERS
+        $story->setStories_title($stories_title);
+        $story->setStories_content($stories_content);
+
+        if(empty($errorList)) {
+            // On appelle la méthode updateStory()
+            $storyUpdatedSuccessfully = $story->updateStory($story_id);
+
+            if ($storyUpdatedSuccessfully) {
+                // On redirige vers le profil
+                header('Location: ' . $router->generate('profil'));
+                exit;
+            }
+        }
+
+        /*if ($storyUpdatedSuccessfully) {
+            // On redirige vers le profil
+            header('Location: ' . $router->generate('profil'));
+            exit;
+        }*/
+
+        $this->show('story/CRUDStory/updateStory', [
+            'title' => 'Modifer une histoire',
+            'story_id' => $params['id'],
+            'story' => $story,
+            'errorList' => $errorList,
+        ]);
+    }
+
     public function authorStories($params) {
         // On inclu notre model Story
         $storyModel = new Story();

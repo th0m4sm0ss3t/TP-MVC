@@ -1,9 +1,9 @@
 <?php
-// Check if the user is logged in, if not then redirect them to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login");
-    exit;
-}
+  // Check if the user is logged in, if not then redirect them to login page
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+      header('Location: ' . $router->generate('login'));
+      exit;
+  }
 ?>
 
 <div class="page-header">

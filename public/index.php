@@ -80,6 +80,39 @@ $router->map(
     'storyAddConfirmation'
 );
 
+/* UPDATE STORY */
+$router->map(
+    'GET', 
+    '/updateStory/[i:id]', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'UpdateStory',
+    ], 
+    'UpdateStory'
+);
+
+$router->map(
+    'POST', 
+    '/updateStory/[i:id]', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'checkUpdateStory',
+    ], 
+    'checkUpdateStory'
+);
+
+/* DELETE STORY CONFIRMATION */
+$router->map(
+    'GET', 
+    '/storyDeletedConfirmation', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'storyDeletedConfirmation',
+    ], 
+    'storyDeletedConfirmation'
+);
+
+
 /* VIEW ONE AUTHOR */
 $router->map(
     'GET', 
