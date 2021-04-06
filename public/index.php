@@ -112,16 +112,6 @@ $router->map(
     'deleteStory'
 );
 
-$router->map(
-    'POST', 
-    '/deleteStory/[i:id]', 
-    [
-        'controller' => 'TPMVC\Controllers\StoryController',
-        'method' => 'checkDeleteStory',
-    ], 
-    'checkDeleteStory'
-);
-
 /* DELETE STORY CONFIRMATION PAGE */
 $router->map(
     'GET', 

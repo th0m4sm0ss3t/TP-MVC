@@ -104,20 +104,6 @@ class StoryController extends MainController
 
     public function deleteStory($params)
     {
-        // On inclu notre model Story
-        $storyModel = new Story();
-        // On appelle la méthode souhaitée
-        $story = $storyModel->findOneStoryById($params['id']);
-
-        $this->show('story/CRUDStory/deleteStory', [
-            'title' => 'Supprimer une histoire',
-            'story_id' => $params['id'],
-            'story' => $story,
-        ]);
-    }
-
-    public function checkDeleteStory($params)
-    {
         global $router;
 
         // On inclu notre model Story
@@ -142,12 +128,6 @@ class StoryController extends MainController
         } else {
             dump('Histoire non supprimée');
         }
-
-        /*$this->show('story/CRUDStory/deleteStory', //[
-            'title' => 'Supprimer une histoire',
-            'story_id' => $params['id'],
-            'story' => $story,
-        ]);*/
     }
 
     public function storyDeleteConfirmation()
