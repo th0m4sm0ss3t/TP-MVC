@@ -58,13 +58,19 @@ class StoryController extends MainController
 
         // dump($stories_title, $stories_content);
 
+        $story_id = $params['id'];
+
+        // On appelle la méthode souhaitée
+        $story = Story::findOneStoryById($story_id);
+
         $errorList = [];
 
         // Vérification titre
         if (empty($stories_title)) {
             $errorList[] = "Veuillez entrer un titre pour votre histoire.";
-        } elseif (Story::findByTitle($stories_title) !== false) {
-            // Titre existe déjà en database
+          // Titre existe déjà en database ET différent de celui pré-modification
+        } elseif ((Story::findByTitle($stories_title) !== false) && ($story->getStories_title() !== $stories_title)) {
+            
             $errorList[] = 'Titre d\'histoire déja existant dans la base de données.';
         }
 
@@ -72,11 +78,6 @@ class StoryController extends MainController
         if (empty($stories_content)) {
             $errorList[] = "Veuillez entrer du contenu pour votre histoire.";
         }
-
-        $story_id = $params['id'];
-
-        // On appelle la méthode souhaitée
-        $story = Story::findOneStoryById($story_id);
 
         // On défini les propriétés de la story via les SETTERS
         $story->setStories_title($stories_title);
