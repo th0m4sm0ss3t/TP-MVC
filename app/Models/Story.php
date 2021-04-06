@@ -145,6 +145,25 @@ class Story
         return ($updatedRows > 0);
     }
 
+    public function deleteStory($stories_id) 
+    {
+        // On récupère PDO via Database
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "DELETE FROM stories WHERE stories_id = :stories_id";
+
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':stories_id', $stories_id, PDO::PARAM_INT);
+
+        $deletedRow = $pdoStatement->execute();
+
+        // On retourne VRAI, si au moins une ligne supprimée
+        return ($deletedRow > 0);
+    }
+
     
     /**
      * Get the value of stories_id

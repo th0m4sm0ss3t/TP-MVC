@@ -68,7 +68,6 @@
     <?php } ?>
 </div>
 
-
 <!-- MODAL DELETE -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -80,8 +79,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn btn-danger"><a href='<?php echo $base_uri; ?>/deleteStory/<?php echo $value['stories_id']; ?>' class="text-white">Oui, supprimer</a></button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Finalement non</button>
+          <button type="button" class="btn btn-danger"><a href='<?php echo $base_uri; ?>/deleteStory/<?= $value->stories_id ?>' class="text-white">Oui, supprimer</a></button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Finalement non</button>
       </div>
     </div>
   </div>

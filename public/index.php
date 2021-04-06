@@ -101,15 +101,36 @@ $router->map(
     'checkUpdateStory'
 );
 
-/* DELETE STORY CONFIRMATION */
+/* DELETE STORY */
 $router->map(
     'GET', 
-    '/storyDeletedConfirmation', 
+    '/deleteStory/[i:id]', 
     [
         'controller' => 'TPMVC\Controllers\StoryController',
-        'method' => 'storyDeletedConfirmation',
+        'method' => 'deleteStory',
     ], 
-    'storyDeletedConfirmation'
+    'deleteStory'
+);
+
+$router->map(
+    'POST', 
+    '/deleteStory/[i:id]', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'checkDeleteStory',
+    ], 
+    'checkDeleteStory'
+);
+
+/* DELETE STORY CONFIRMATION PAGE */
+$router->map(
+    'GET', 
+    '/storyDeleteConfirmation', 
+    [
+        'controller' => 'TPMVC\Controllers\StoryController',
+        'method' => 'storyDeleteConfirmation',
+    ], 
+    'storyDeleteConfirmation'
 );
 
 

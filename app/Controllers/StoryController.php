@@ -94,17 +94,66 @@ class StoryController extends MainController
             }
         }
 
-        /*if ($storyUpdatedSuccessfully) {
-            // On redirige vers le profil
-            header('Location: ' . $router->generate('profil'));
-            exit;
-        }*/
-
         $this->show('story/CRUDStory/updateStory', [
             'title' => 'Modifer une histoire',
             'story_id' => $params['id'],
             'story' => $story,
             'errorList' => $errorList,
+        ]);
+    }
+
+    public function deleteStory($params)
+    {
+        // On inclu notre model Story
+        $storyModel = new Story();
+        // On appelle la méthode souhaitée
+        $story = $storyModel->findOneStoryById($params['id']);
+
+        $this->show('story/CRUDStory/deleteStory', [
+            'title' => 'Supprimer une histoire',
+            'story_id' => $params['id'],
+            'story' => $story,
+        ]);
+    }
+
+    public function checkDeleteStory($params)
+    {
+        global $router;
+
+        // On inclu notre model Story
+        $storyModel = new Story();
+        // On appelle la méthode souhaitée
+        $story = $storyModel->findOneStoryById($params['id']);
+
+        // 404 ?
+        if ($story === false) {
+            // Redirection vers page erreur 404
+            $this->error404();
+            exit;
+        }
+
+        // On supprime
+        $storyDeletedSuccessfully = $story->deleteStory($params['id']);
+
+        if ($storyDeletedSuccessfully) {
+            // Redirection vers la page de confirmation de suppression
+            header('Location: ' . $router->generate('storyDeleteConfirmation'));
+            exit;
+        } else {
+            dump('Histoire non supprimée');
+        }
+
+        /*$this->show('story/CRUDStory/deleteStory', //[
+            'title' => 'Supprimer une histoire',
+            'story_id' => $params['id'],
+            'story' => $story,
+        ]);*/
+    }
+
+    public function storyDeleteConfirmation()
+    {
+        $this->show('story/storyDeleteConfirmation', [
+            'title' => 'Histoire supprimée',
         ]);
     }
 
