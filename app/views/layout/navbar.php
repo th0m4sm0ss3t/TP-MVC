@@ -26,7 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         Effectuer une recherche
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchStories">Par histoire</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchStory">Par histoire</a>
                             <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchAuthor">Par auteur·ice</a>
                     </li>
                 </ul>
@@ -62,7 +62,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         Effectuer une recherche
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchStories">Par histoire</a>
+                            <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchStory">Par histoire</a>
                             <a class="dropdown-item text-white bg-dark" href="<?php echo $base_uri; ?>/searchAuthor">Par auteur·ice</a>
                     </li>
                 </ul>

@@ -238,4 +238,54 @@ class StoryController extends MainController
             'title' => 'Histoire ajoutée !',
         ]);;
     }
+
+    public function searchStory() {
+        $this->show('story/searchStory', [
+            'title' => 'Rechercher une histoire',
+        ]);;
+    }
+
+    public function checkSearchStory(){
+
+        $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
+
+        // On appelle la méthode souhaitée
+        $resultSearch = Story::searchStory($search);
+
+        $fetchedResults = $resultSearch['resultSearch']; // get all the results from search
+
+        $count = $resultSearch['count']; // count the number of results
+
+        // Message to display when error(s)
+        $errorList = [];
+
+        // Message to display when search has been posted
+        $resultMessage = [];
+
+        // Si vide
+        if(empty($search)) {
+            $errorList[] = "Veuillez effectuer une recherche.";
+          // Si champs $search rempli :   
+        } else {
+            // Si recherche n'a rien donnée
+            if($count === 0){
+                $resultMessage[] = "La recherche « $search » n'a rien donné !";
+                // Si recherche a trouvé 1 résultat
+            } else if ($count === 1){
+                $resultMessage[] = "La recherche « $search » a donné $count résultat.";
+                // Si recherche a trouvé plusieurs résultats
+            } else {
+                $resultMessage[] = "La recherche « $search » a donné $count résultats.";
+            }
+        }
+
+        $this->show('story/searchStory', [
+            'title' => 'Rechercher une histoire',
+            'errorList' => $errorList,
+            'resultMessage' => $resultMessage,
+            'resultSearch' => $resultSearch,
+            'fetchedResults' => $fetchedResults,
+            'count' => $count,
+        ]);;
+    }
 }

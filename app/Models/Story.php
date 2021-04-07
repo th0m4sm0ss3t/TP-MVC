@@ -164,6 +164,35 @@ class Story
         return ($deletedRow > 0);
     }
 
+    static public function searchStory($search){
+        // On récupère PDO via Database
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "SELECT * FROM stories WHERE stories_title LIKE :keywords";
+
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        // On binde
+        $pdoStatement->bindValue('keywords', '%' . $search . '%');
+
+        // On execute la requête
+        /*$resultSearch =*/ $pdoStatement->execute();  
+
+        // On fetch tous les résultats
+        $resultSearch = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\Story');
+
+        // On compte le nombre de résultat
+        $count = $pdoStatement->rowCount();
+
+        $result = array('resultSearch' => $resultSearch, 'count' => $count);
+
+        // dump('result MODEL', $result, $resultSearch);
+
+        return $result;
+    }
+
     
     /**
      * Get the value of stories_id
