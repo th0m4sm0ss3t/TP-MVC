@@ -182,6 +182,36 @@ class User
         return ($updatedRows > 0);
     }
 
+    /* SEARCH AN AUTHOR */
+    static public function searchAuthor($search){
+        // On récupère PDO via Database
+        $pdo = Database::getPDO();
+
+        // SQL
+        $sql = "SELECT * FROM users WHERE username LIKE :keywords";
+
+        // On prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        // On binde
+        $pdoStatement->bindValue('keywords', '%' . $search . '%');
+
+        // On execute la requête
+        /*$resultSearch =*/ $pdoStatement->execute();  
+
+        // On fetch tous les résultats
+        $resultSearch = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'TPMVC\Models\User');
+
+        // On compte le nombre de résultat
+        $count = $pdoStatement->rowCount();
+
+        $result = array('resultSearch' => $resultSearch, 'count' => $count);
+
+        // dump('result MODEL', $result, $resultSearch);
+
+        return $result;
+    }
+
     /**
      * Get the value of id
      */ 
