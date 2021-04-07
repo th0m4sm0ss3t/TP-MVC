@@ -118,6 +118,17 @@ class StoryController extends MainController
             exit;
         }
 
+        // Récupère l'id du user via la session
+        $user_id = $_SESSION['userId']; 
+
+        // Prevent the delete (through url by ex) from a user/visitor that is not the story's author 
+        if($user_id !== $story->users_id) {
+            header('Location: ' . $router->generate('login'));
+            exit;
+        };
+
+        //dump($user_id !== $story->users_id);
+
         // On supprime
         $storyDeletedSuccessfully = $story->deleteStory($params['id']);
 
