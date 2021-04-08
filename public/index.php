@@ -23,7 +23,7 @@ $router->map(
         'controller' => 'TPMVC\Controllers\MainController', // destination vers controller à utiliser
         'method' => 'home', // destination vers méthode du controller à utiliser
     ], 
-    'home' // nom de la route
+    'home' // Référence à la route, utilisé notamment par generate()
 );
 
 /* STORIES LIST */

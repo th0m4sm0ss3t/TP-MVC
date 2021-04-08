@@ -31,6 +31,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <?php endif; ?>
 
         <div class="form_group form-group-bottom">
+            <input type="hidden" name="secure" value="<?php echo $viewVars['tokenCsrf']; ?>">
             <input type="submit" class="btn btn-danger" value="Supprimer le profil">
             <a class="btn btn-link text-dark" href="<?php echo $base_uri; ?>/profil">Retourner à mon profil</a>
         </div>

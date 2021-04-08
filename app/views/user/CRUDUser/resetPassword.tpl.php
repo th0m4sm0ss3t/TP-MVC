@@ -26,6 +26,7 @@
         <?php endif; ?>
 
         <div class="form-group form-group-bottom">
+            <input type="hidden" name="secure" value="<?php echo $viewVars['tokenCsrf']; ?>">
             <input type="submit" class="btn btn-success" value="Changer le mot de passe">
             <input type="reset" class="btn btn-danger" value="Annuler">
             <a class="btn btn-link text-dark" href="<?php echo $base_uri; ?>/profil">Retourner à mon profil</a>

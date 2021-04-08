@@ -97,12 +97,6 @@ class UserController extends MainController
         ]);
     }
 
-    /*
-    register@test.com
-    Register Test (username)
-    register (mpd)
-    */
-
     public function checkSignup() {
         global $router;
 
@@ -203,6 +197,7 @@ class UserController extends MainController
             'timestamp' => $timestamp,
             'userId' => $userId,
             'userStoriesInfos' => $userStoriesInfos,
+            'tokenCsrf' => $this->generateTokenCSRF(), //token de sécurité
         ]);
     }
 
@@ -210,6 +205,7 @@ class UserController extends MainController
     {
         $this->show('user/CRUDUser/resetPassword', [
             'title' => 'Modifier son mot de passe',
+            'tokenCsrf' => $this->generateTokenCSRF(), //token de sécurité
         ]);
     }
 
@@ -278,6 +274,7 @@ class UserController extends MainController
     {
         $this->show('user/CRUDUser/deleteProfil', [
             'title' => 'Supprimer mon profil',
+            'tokenCsrf' => $this->generateTokenCSRF(), //token de sécurité
         ]);
     }
 

@@ -28,6 +28,7 @@
             <?php endif; ?>
     
             <div class="form-group form-group-bottom">
+                <input type="hidden" name="secure" value="<?php echo $viewVars['tokenCsrf']; ?>">
                 <input type="submit" class="btn btn-success" value="Publier mon histoire">
                 <input type="reset" class="btn btn-danger" value="Annuler">
             </div>

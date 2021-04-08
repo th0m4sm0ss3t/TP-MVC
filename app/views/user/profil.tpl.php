@@ -79,8 +79,9 @@
         </button>
       </div>
       <div class="modal-body">
-          <button type="button" class="btn btn-danger"><a href='<?php echo $base_uri; ?>/deleteStory/<?= $value->stories_id ?>' class="text-white">Oui, supprimer</a></button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Finalement non</button>
+        <input type="hidden" name="secure" value="<?php echo $viewVars['tokenCsrf']; ?>">
+        <button type="button" class="btn btn-danger"><a href='<?php echo $base_uri; ?>/deleteStory/<?= $value->stories_id ?>' class="text-white">Oui, supprimer</a></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Finalement non</button>
       </div>
     </div>
   </div>

@@ -29,6 +29,7 @@
 
         <input type='hidden' name='stories_id' value="<?= $viewVars['story']->getStories_id(); ?>"/>
         <div class="form-group form-group-bottom">
+            <input type="hidden" name="secure" value="<?php echo $viewVars['tokenCsrf']; ?>">
             <input type="submit" class="btn btn-success" value="Sauvegarder les changements">
             <input type="reset" class="btn btn-danger" value="Annuler">
         </div>

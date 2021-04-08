@@ -46,6 +46,7 @@ class StoryController extends MainController
             'title' => 'Modifer une histoire',
             'story_id' => $params['id'],
             'story' => $story,
+            'tokenCsrf' => $this->generateTokenCSRF(), //token de sécurité
         ]);
     }
 
@@ -165,6 +166,7 @@ class StoryController extends MainController
     {
         $this->show('story/CRUDStory/addStory', [
             'title' => 'Ajouter une histoire',
+            'tokenCsrf' => $this->generateTokenCSRF(), //token de sécurité
         ]);
     }
 
