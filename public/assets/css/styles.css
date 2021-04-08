@@ -61,12 +61,12 @@ body {
 }
 
 .show-eye {
-    content: url(img/eye.svg);
+    content: url(../img/eye.svg);
     margin-left: 0.5rem;
 }
 
 .hide-eye {
-    content: url(img/eye-off.svg);
+    content: url(../img/eye-off.svg);
     margin-left: 0.5rem;
 }
 
