@@ -94,7 +94,7 @@ class StoryController extends MainController
                 exit;
             }
         }
-
+        
         $this->show('story/CRUDStory/updateStory', [
             'title' => 'Modifer une histoire',
             'story_id' => $params['id'],
