@@ -13,6 +13,9 @@ class MainController
 
         // La route contient-elle un token à valider ?
         $this->checkCsrf($routeName);
+
+        // Le user doit-il est connecté pour accéder à la route ?
+        $this->checkIfLoggedIn($routeName);
     }
 
     /**
@@ -127,6 +130,36 @@ class MainController
 
         }
         // La programme continue
+    }
+
+    /**
+    * Vérification du status de connexion (loggedIn) selon la route demandée et renvoie vers la page login si false
+    * 
+    * @param string $routeName Route à vérifier
+    **/
+    private function checkIfLoggedIn ($routeName) 
+    {
+        global $router;
+
+        // Liste des routes dont il faut vérifier si le user est connecté ($_SESSION["loggedin"])
+        $loggedInRoutes = [
+            'addStoryView',
+            'UpdateStory',
+            'deleteStory',
+            'profil',
+            'resetPassword',
+            'deleteProfil',
+        ];
+
+        if(!empty($loggedInRoutes) && in_array($routeName, $loggedInRoutes)) {
+
+            /* Si pas connecté alors on renvoie vers la page de connexion */
+            if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+                header('Location: ' . $router->generate('login'));
+                exit;
+            }
+
+        }
     }
 
     /**

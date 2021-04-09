@@ -1,10 +1,3 @@
-<?php
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header('Location: ' . $router->generate('login'));
-        exit;
-    }
-?>
-
 <h2 class="title" id="edit">Modifier votre histoire</h2>
 
 <div class="wrapper">
