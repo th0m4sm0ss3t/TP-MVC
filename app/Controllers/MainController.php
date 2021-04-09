@@ -93,7 +93,6 @@ class MainController
         $csrfRoutes = [
             'addStoryCreation',
             'checkUpdateStory',
-            'deleteStory',
             'checkResetPassword',
             'checkDeleteProfil',
         ];
