@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        <h1 class="title-header">Système d'inscription et de connection</h1>
+        <h1 class="title-header">Story Share</h1>
 
     <?php include "navbar.php"; ?>
 
